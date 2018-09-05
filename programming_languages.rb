@@ -1,14 +1,15 @@
 
 def reformat_languages(languages)
-hash = {}
-languages.each do |k, v| 
-    v.each do |k1, v1| 
-        if hash[k1]
-            hash[k1][:style] << k
-        else
-            hash[k1] = {type: v1[:type], style: [k]}
-        end
+ new_hash = {} 
+   languages.each do |style, description|
+    description.each do |language, type|
+      if new_hash.has_key?(language)
+        new_hash[language][:style] << style
+      else
+        new_hash[language] = type
+        new_hash[language][:style] = [style]
+      end
     end
-end
-hash
+  end
+   new_hash  
 end
